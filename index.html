@@ -129,7 +129,9 @@
                     </label>
                     <br>
                     <label>Select a ticker
-                        <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')"></select>
+                        <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')">
+                            <option value="none">-- select a ticker --</option>
+                        </select>
                     </label>
                     <br>
                     <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
