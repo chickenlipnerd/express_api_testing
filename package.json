@@ -1,0 +1,30 @@
+{
+  "name": "express-api-testing",
+  "version": "1.0.0",
+  "description": "ExpressJS to create APIs to serve CSV data.",
+  "main": "expressapp.js",
+  "scripts": {
+    "start": "nodemon ./expressapp.js --exec babel-node -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chickenlipnerd/node_ajax_testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chickenlipnerd/node_ajax_testing/issues"
+  },
+  "homepage": "https://github.com/chickenlipnerd/node_ajax_testing#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
