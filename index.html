@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpressJS Testing</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script>
+        const resultsTickerDiv = '#get-companies-by-ticker-results';
+        const findCompanyByTickerHelpDiv = '#find-by-ticker-help-text';
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://127.0.0.1:3001'
+            }
+        }
+
+        async function getAllCompanies() {
+            let url = `http://127.0.0.1:3001/companies`;
+            try {
+                let res = await fetch(url, fetchOptions);
+                // return await res.json();
+                let results = await res.json();
+                results.map(d => {
+                    console.log(d['ticker']);
+                    let optionEl = document.createElement('option');
+                    optionEl.value = d['ticker'];
+                    optionEl.innerText = d['ticker'];
+                    
+                    let selectList = document.querySelector('#ticker-select');
+                    selectList.appendChild(optionEl)
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function getCompanyByTicker(e) {
+            console.log('what is triggering this', e);
+            const input = document.querySelector('input[name="ticker"]');
+            let inputValue;
+            if (e === 'select') {
+                let select = document.querySelector('#ticker-select');
+                inputValue = select.options[select.selectedIndex].value;
+                input.value = '';
+            }
+
+            if (e === 'input') {
+                inputValue = input.value.toUpperCase();
+            }
+
+            console.log('selected', inputValue);
+            const companyByTickerResultsDiv = document.querySelector(resultsTickerDiv);
+            const companyByTickerHelperDiv = document.querySelector(findCompanyByTickerHelpDiv)
+            const url = `http://127.0.0.1:3001/companies/${inputValue}`;
+            console.log(inputValue);
+
+            tempCompanyByTickerHelperDiv = companyByTickerHelperDiv;
+            companyByTickerResultsDiv.textContent = '';
+            try {
+                let res = await fetch(url, fetchOptions);
+                await console.log(res);
+                // return await res.json();
+                let results = await res.json();
+                console.log(`results: `, results);
+                d = results[0];
+                // results.map(d => {
+                    let companyDiv = document.createElement('div');
+
+                    let companyName = document.createElement('h2');
+                    companyName.innerText = d['company name'];
+                    companyDiv.appendChild(companyName);
+
+                    let companyDescr = document.createElement('p');
+                    companyDescr.innerText = d['description'];
+                    companyDiv.appendChild(companyDescr);
+                    
+                    let companyUrl = document.createElement('a');
+                    companyUrl.href = d['url'];
+                    companyUrl.innerText = `Ticker: ${d['ticker']}`;
+                    companyDiv.appendChild(companyUrl);
+                    
+                    companyByTickerResultsDiv.appendChild(companyDiv);
+                // });
+            } catch (error) {
+                console.log(error);
+                console.log('findCompanyByTickerHelpDiv', tempCompanyByTickerHelperDiv);
+                companyByTickerResultsDiv.appendChild(tempCompanyByTickerHelperDiv);
+            }
+        }
+
+        function filterTickerList() {
+            const filterList = document.querySelector('ticker-select');
+
+
+        }
+
+        window.addEventListener('load', () => {
+            getAllCompanies();
+        });
+
+        document.addEventListener('readystatechange', () => {
+            console.log('document is ready!');
+        });
+    </script>
+    <style>
+        #form-get-companies-by-ticker {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="express-ajax-get-companies">
+        <div class="row">
+            <section id="form-get-companies-by-ticker">
+                <h2>Find company by ticker name</h2>
+                <fieldset name="filter-by-ticker">
+                    <legend>Type in a ticker to find a company</legend>
+                    <label>Ticker
+                        <!-- <input type="text" name="ticker" oninput="getCompanyByTicker()"> -->
+                        <input type="text" name="ticker" oninput="filterTickerList()">
+                    </label>
+                    <br>
+                    <label>Select a ticker
+                        <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')"></select>
+                    </label>
+                    <br>
+                    <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
+                </fieldset>
+                <h3>Results:</h3>
+                <div id="get-companies-by-ticker-results">
+                    <p id="find-by-ticker-help-text">
+                        Enter a ticker acronym to find the company to which it is applicable.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</body>
+</html>
