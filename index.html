@@ -33,7 +33,7 @@
                     let optionEl = document.createElement('option');
                     optionEl.value = d['ticker'];
                     optionEl.innerText = d['ticker'];
-                    
+
                     let selectList = document.querySelector('#ticker-select');
                     selectList.appendChild(optionEl)
                 });
@@ -81,12 +81,12 @@
                     let companyDescr = document.createElement('p');
                     companyDescr.innerText = d['description'];
                     companyDiv.appendChild(companyDescr);
-                    
+
                     let companyUrl = document.createElement('a');
                     companyUrl.href = d['url'];
                     companyUrl.innerText = `Ticker: ${d['ticker']}`;
                     companyDiv.appendChild(companyUrl);
-                    
+
                     companyByTickerResultsDiv.appendChild(companyDiv);
                 // });
             } catch (error) {
@@ -111,38 +111,42 @@
         });
     </script>
     <style>
-        #form-get-companies-by-ticker {
+        #express-ajax-get-companies {
             border: solid black 1px;
+            border-radius: 10px;
+            background: lightcyan;
         }
     </style>
 </head>
 <body>
     <div class="container" id="express-ajax-get-companies">
         <div class="row">
-            <section id="form-get-companies-by-ticker">
-                <h2>Find company by ticker name</h2>
-                <fieldset name="filter-by-ticker">
-                    <legend>Type in a ticker to find a company</legend>
-                    <label>Ticker
-                        <!-- <input type="text" name="ticker" oninput="getCompanyByTicker()"> -->
-                        <input type="text" name="ticker" oninput="filterTickerList()">
-                    </label>
-                    <br>
-                    <label>Select a ticker
-                        <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')">
-                            <option value="none">-- select a ticker --</option>
-                        </select>
-                    </label>
-                    <br>
-                    <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
-                </fieldset>
-                <h3>Results:</h3>
-                <div id="get-companies-by-ticker-results">
-                    <p id="find-by-ticker-help-text">
-                        Enter a ticker acronym to find the company to which it is applicable.
-                    </p>
-                </div>
-            </section>
+            <div class="col-md-12">
+                <section id="form-get-companies-by-ticker">
+                    <h2>Find company by ticker name</h2>
+                    <fieldset name="filter-by-ticker">
+                        <legend>Type in a ticker to find a company</legend>
+                        <label>Ticker
+                            <!-- <input type="text" name="ticker" oninput="getCompanyByTicker()"> -->
+                            <input type="text" name="ticker" oninput="filterTickerList()">
+                        </label>
+                        <br>
+                        <label>Select a ticker
+                            <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')">
+                                <option value="none">-- select a ticker --</option>
+                            </select>
+                        </label>
+                        <br>
+                        <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
+                    </fieldset>
+                    <h3>Results:</h3>
+                    <div id="get-companies-by-ticker-results">
+                        <p id="find-by-ticker-help-text">
+                            Enter a ticker acronym to find the company to which it is applicable.
+                        </p>
+                    </div>
+                </section>
+			</div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
