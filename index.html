@@ -97,9 +97,13 @@
         }
 
         function filterTickerList() {
-            const filterList = document.querySelector('ticker-select');
-
-
+            const tickerVal = document.querySelector('input[name="ticker"]');
+            const filterList = document.querySelector('#ticker-select');
+            const tickerVals = Array.from(filterList.options);
+            console.log('Ticker value', tickerVal.value)
+            let filteredOptions = tickerVals.filter((opt) => opt.value === tickerVal.value);
+            console.log('Filter Options', filteredOptions);
+            filterList.push(filteredOptions);
         }
 
         window.addEventListener('load', () => {
