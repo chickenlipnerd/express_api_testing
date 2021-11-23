@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExpressJS Testing</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script>
         const resultsTickerDiv = '#get-companies-by-ticker-results';
         const findCompanyByTickerHelpDiv = '#find-by-ticker-help-text';
@@ -121,7 +118,7 @@
 <body>
     <div class="container" id="express-ajax-get-companies">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col">
                 <section id="form-get-companies-by-ticker">
                     <h2>Find company by ticker name</h2>
                     <fieldset name="filter-by-ticker">
@@ -131,13 +128,14 @@
                             <input type="text" name="ticker" oninput="filterTickerList()">
                         </label>
                         <br>
+                        <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
+                        <br>
                         <label>Select a ticker
                             <select name="ticker-select" id="ticker-select" onchange="getCompanyByTicker('select')">
                                 <option value="none">-- select a ticker --</option>
                             </select>
                         </label>
                         <br>
-                        <button class="btn btn-primary" onclick="getCompanyByTicker('input')">Get Results</button>
                     </fieldset>
                     <h3>Results:</h3>
                     <div id="get-companies-by-ticker-results">
@@ -149,11 +147,194 @@
 			</div>
         </div>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    <style>
+        .full-width-white {
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            min-height: inherit;
+            max-width: 1920px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .full-width-white .fullWidth {
+            background-image: linear-gradient(90deg, white 50%, transparent 60%);
+            max-width: 1920px;
+        }
+
+        .full-width-white .fullWidth > .row:first-child {
+            min-height: 500px;
+        }
+
+        .full-width-white .contentTeaser h1 {
+            margin-bottom: 24px;
+        }
+
+        .full-width-white .contentTeaser p {
+            margin-bottom: 40px;
+        }
+
+        .full-width-white .contentTeaser > *:first-child {
+            margin-top: 60px;
+        }
+
+        .full-width-white .contentTeaser > *:last-child {
+            margin-bottom: 60px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .full-width-white {
+                background-size: 100% 250px;
+                padding-top: 250px;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+
+            .full-width-white .fullWidth {
+                background: none;
+            }
+
+            .full-width-white .contentTeaser {
+                text-align: center;
+            }
+
+            .full-width-white .fullWidth > .row:first-child {
+                min-height: auto;
+            }
+        }
+    </style>
+    <section class="full-width-white" style="background-image: url(https://www.sarasota.wateratlas.usf.edu/wiki/images/a/a9/Example.jpg);">
+        <div class="container fullWidth">
+            <div class="row align-items-center">
+                <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-sm-0 col-sm-12 align-self-center">
+                    <div class="row">
+                        <div class="col-md-6 contentTeaser">
+                            <h1>This is an <strong>H1</strong></h1>
+                            <p>Principal<sup>®</sup> recordkeeping platform selected to help maximize retirement outcomes for participants and clients.</p>
+                            <button class="btn btn-primary">Read the press release</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .pds-hero-white {
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            max-width: 1920px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pds-hero-white .fullWidth {
+            background-image: linear-gradient(90deg, white 50%, transparent 60%);
+            max-width: 1920px;
+        }
+
+        .pds-hero-white .fullWidth > .row:first-child {
+            min-height: 500px;
+        }
+
+        .pds-hero-white .contentTeaser h1 {
+            margin-bottom: 24px;
+        }
+
+        .pds-hero-white .contentTeaser p {
+            margin-bottom: 40px;
+        }
+
+        .pds-hero-white .contentTeaser > *:first-child {
+            margin-top: 60px;
+        }
+
+        .pds-hero-white .contentTeaser > *:last-child {
+            margin-bottom: 60px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .pds-hero-white {
+                background-size: 100% 250px;
+                padding-top: 250px;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+
+            .pds-hero-white .fullWidth {
+                background: none;
+            }
+
+            .pds-hero-white .contentTeaser {
+                text-align: center;
+            }
+
+            .pds-hero-white .fullWidth > .row:first-child {
+                min-height: auto;
+            }
+        }
+    </style>
+    <section class="pds-hero-white" style="background-image: url(https://via.placeholder.com/1720x755.png?text=Placeholder);">
+        <div class="container fullWidth">
+            <div class="row align-items-center">
+                <div class="offset-lg-2 col-lg-4 offset-md-1 col-md-5 offset-sm-0 col-sm-12 align-self-center contentTeaser">
+                    <h1>This is an <strong>H1</strong></h1>
+                    <p>Principal<sup>®</sup> recordkeeping platform selected to help maximize retirement outcomes for participants and clients.</p>
+                    <button class="btn btn-primary">Read the press release</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background: center/cover url(https://via.placeholder.com/1720x755.png?text=Placeholder); min-height: 500px; max-width: 1920px; margin-left: auto; margin-right: auto;">
+        <div class="container fullWidth" style="background-image: linear-gradient(90deg, white 50%, transparent 60%); max-width: 1920px;">
+            <div class="row" style="min-height: 500px;">
+                <div class="offset-lg-2 col-lg-4 offset-md-1 col-md-5 offset-sm-0 col-sm-12 align-self-center text-md-left text-sm-center" style="text-align: center;">
+                    <h1 style="margin-top: 60px; margin-bottom: 24px;">This is an <strong>H1</strong></h1>
+                    <p>Principal<sup>®</sup> recordkeeping platform selected to help maximize retirement outcomes for participants and clients.</p>
+                    <div>
+                        <button class="btn btn-primary" style="margin-top: 40px; margin-bottom: 60px;">Read the press release</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background: center/cover url(https://via.placeholder.com/1720x755.png?text=Placeholder); min-height: 500px; max-width: 1920px; margin-left: auto; margin-right: auto;">
+        <div class="container fullWidth" style="background-image: linear-gradient(90deg, white 50%, transparent 60%); max-width: 1920px;">
+            <div class="row" style="min-height: 500px;">
+                <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-sm-0 col-sm-12 align-self-center">
+                    <div class="row">
+                        <div class="col-md-6 text-md-left text-sm-center" style="text-align: center;">
+                            <h1 style="margin-top: 60px; margin-bottom: 24px;">This is an <strong>H1</strong></h1>
+                            <p>Principal<sup>®</sup> recordkeeping platform selected to help maximize retirement outcomes for participants and clients.</p>
+                            <div>
+                                <button class="btn btn-primary" style="margin-top: 40px; margin-bottom: 60px;">Read the press release</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-cols-md-2">
+                <div class="col">
+                    <p>somethng</p>
+                </div>
+                <div class="col">
+                    <p>somethng</p>
+                </div>
+                <div class="col">
+                    <p>somethng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
 </body>
 </html>
